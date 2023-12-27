@@ -26,6 +26,7 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    //для отката сида можно использовать npx sequelize-cli db:seed:undo
     await queryInterface.bulkDelete('users', null, {})
   }
 };
