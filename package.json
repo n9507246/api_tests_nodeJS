@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "migrate:up": "npx sequelize-cli db:migrate",
+    "m": "npx sequelize-cli db:migrate",
+    "migrate:down" : "npx sequelize-cli db:migrate:undo",
+    "md" : "npx sequelize-cli db:migrate:undo"
   },
   "keywords": [],
   "author": "",
