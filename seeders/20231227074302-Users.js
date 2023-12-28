@@ -1,22 +1,15 @@
 'use strict';
 
+const {User, Post} = require('../models')
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
-    await queryInterface.bulkInsert('users', [
-      { name: 'FirstUser'},
-      { name: 'SecondUser'},
-      { name: 'LastUser'},
-    ])
+  async up () {
+    const dataUser = await User.create({ name:"First test user"})
+    await Post.create({
+      user_id: dataUser.id, content: 'asdasdsadasdasdas'
+    })
+
   },
 
   async down (queryInterface, Sequelize) {

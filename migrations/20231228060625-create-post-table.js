@@ -9,18 +9,30 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.createTable('Users', { 
+    await queryInterface.createTable('posts', { 
       id: {
         allowNull:false, 
         autoIncrement: true, 
         primaryKey:true, 
         type:Sequelize.INTEGER 
       },
-      name: {
+      user_id: {
+        type:Sequelize.INTEGER,
+        allowNull:false, 
+      },
+      content: {
         type: Sequelize.STRING, 
         allowNull:false
       },
     });
+    await queryInterface.addConstraint('posts',{
+      fields: ['user_id'],
+      type: 'foreign key',
+      name: 'post_ref_user',
+      references: {table:'Users', field: 'id'},
+      onDelete:'cascade',
+      onUpdate: 'cascade',
+    })
   },
 
   async down (queryInterface, Sequelize) {
@@ -30,6 +42,5 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.dropTable('users');
   }
 };
