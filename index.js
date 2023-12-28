@@ -1,9 +1,8 @@
 require('dotenv').config()
-const express = require('express')
-const app = express()
-
-const routes = require('./router')
-app.use('/api', routes)
-
 const PORT = process.env.PORT || 5000
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
+
+const express = require('express')
+express()
+    .use(require('body-parser').urlencoded({ extended: false }))
+    .use('/api', require('./router'))
+    .listen(PORT, () => console.log(`Server started on port ${PORT}`))
